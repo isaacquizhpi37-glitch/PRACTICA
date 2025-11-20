@@ -4,8 +4,8 @@ import socket
 import time
 
 # Configuración del AP
-SSID = "PROFEGALO"
-PASSWORD = "12345678"
+SSID = "ISAACQ"
+PASSWORD = "20081231"
 
 ap = network.WLAN(network.AP_IF)
 ap.config(essid=SSID, password=PASSWORD, authmode=network.AUTH_WPA_WPA2_PSK)

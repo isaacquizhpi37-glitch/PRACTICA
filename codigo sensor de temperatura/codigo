@@ -1,4 +1,3 @@
-
 # PARA_sensor2.py
 import network
 import socket
@@ -13,7 +12,7 @@ wlan = network.WLAN(network.STA_IF)
 wlan.active(False)
 time.sleep(0.1)
 wlan.active(True)
-wlan.connect("PROFEGALO", "12345678")
+wlan.connect("ISAACQ", "20081231")
 
 print("Conectando como sensor2...")
 while not wlan.isconnected():
@@ -40,3 +39,4 @@ while True:
         print("sensor2 error:", e)
 
     time.sleep(5)
+

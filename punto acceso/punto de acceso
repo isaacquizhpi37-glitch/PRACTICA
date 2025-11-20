@@ -1,0 +1,40 @@
+import dht
+import machine
+import network
+import time
+
+# Nombre de la red y contraseña para el Access Point
+SSID = "ISAAC Q"
+PASSWORD = "isaacq1231"
+
+# Configuración del punto de acceso (Access Point)
+ap = network.WLAN(network.AP_IF)
+ap.active(True)
+ap.config(essid=SSID, password=PASSWORD)
+
+# Obtener la dirección IP del Access Point
+ip_address = ap.ifconfig()[0]
+print("ESP32 configurado como Access Point")
+print("Dirección IP del Access Point:", ip_address)
+
+# Configuración del sensor DHT11 en el pin 23
+dht_sensor = dht.DHT11(machine.Pin(23))
+
+# Bucle principal para leer los datos del sensor
+while True:
+    try:
+        # Medir los valores de temperatura y humedad
+        dht_sensor.measure()
+        temp = dht_sensor.temperature()
+        hum = dht_sensor.humidity()
+
+        # Mostrar los valores en la consola
+        print("Temperatura: %.1f °C" % temp)
+        print("Humedad: %.1f%%" % hum)
+
+        # Esperar 2 segundos antes de la siguiente medición
+        time.sleep(2)
+
+    except OSError as e:
+        # Si hay un error en la lectura del sensor, mostrar mensaje
+        print("No se pudo leer el sensor")
